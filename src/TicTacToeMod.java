@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class TicTacToeMod {
 	
-	private char[][] board;
+	private static char[][] board;
 	private static char playerChar;
 	private static int boardSize;
 	private static int numberOfPlayers;
@@ -207,20 +207,69 @@ public class TicTacToeMod {
 		
 		System.out.println("Welcome to a game of tic tac toe!");
 		Scanner scanner = new Scanner(System.in);
+		
+		while(true) {
 		System.out.println("How many players do you want to play with? ");
 		numberOfPlayers = scanner.nextInt();
+		if (numberOfPlayers == 2 || numberOfPlayers ==3) {
+		break;
+		}
+		System.out.println("Please enter 2 or 3");
+		}
+		
+		while(true) {
 		System.out.println("What character do you want to start with?");
 		playerChar = scanner.next().charAt(0);
+		if (playerChar == 'x' || playerChar == 'o') {
+			break;
+		}
+		System.out.println("Please enter x or o");
+		}
 		
 		TicTacToeMod Tictactoe = new TicTacToeMod();
 		
 		if (numberOfPlayers == 2) {
 		while (true) {
 			int counter = 0;
-			System.out.println("Choose your row");
-			int row = scanner.nextInt();
-			System.out.println("Choose your column");
-			int col = scanner.nextInt();
+			int row;
+			int col;
+			
+			while (true) {
+				
+				while (true) {
+					
+					System.out.println("Choose your row");
+					row = scanner.nextInt();
+					if(row < boardSize && row >= 0) {
+						break;
+					} else {
+						System.out.println("Please enter a valid row");
+					}
+					}
+					
+					
+					while (true) {
+					System.out.println("Choose your column");
+					col = scanner.nextInt();
+					if(col < boardSize && col >= 0) {
+						break;
+					} else {
+						System.out.println("Please enter a valid column");
+					}
+					}
+					if (board[row][col] == 'x' || board[row][col] == 'o') {
+						System.out.println("Cell already occupied");
+					} else {
+						break;
+					}
+				
+			}
+			
+			
+			
+			
+			
+			
 			Tictactoe.fillBoard(row,  col);
 			Tictactoe.displayBoard(boardSize);
 			
@@ -244,10 +293,44 @@ public class TicTacToeMod {
 		else {
 			while (true) {
 				int counter = 0;
-				System.out.println("Choose your row");
-				int row = scanner.nextInt();
-				System.out.println("Choose your column");
-				int col = scanner.nextInt();
+				int row;
+				int col;
+				
+				while(true) {
+					while (true) {
+						
+						System.out.println("Choose your row");
+						row = scanner.nextInt();
+						if(row < boardSize && row >= 0) {
+							break;
+						} else {
+							System.out.println("Please enter a valid row");
+						}
+						}
+					
+					
+					
+					while (true) {
+						System.out.println("Choose your column");
+						col = scanner.nextInt();
+						if(col < boardSize && col >= 0) {
+							break;
+						} else {
+							System.out.println("Please enter a valid column");
+						}
+						}
+					if (board[row][col] == 'o' || board[row][col] == 'x' || board[row][col] =='y') {
+						System.out.println("Cell already occupied");
+					} else {
+						break;
+					}
+					
+				}
+				
+				
+				
+				
+				
 				Tictactoe.fillBoard(row,  col);
 				Tictactoe.displayBoard(boardSize);
 				
